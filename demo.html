@@ -4,12 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Demo — 3E Systems AI</title>
-<meta name="description" content="See a real AI conversation, handled entirely by 3E Systems AI's assistant, from first message to booked appointment.">
+<meta name="description" content="Talk to the real 3E Assistant yourself — the same AI chatbot 3E Systems AI builds for businesses, live on this page.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%231D1D1F'/%3E%3Cstop offset='55%25' stop-color='%233a3a3d'/%3E%3Cstop offset='130%25' stop-color='%232F6FED'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='40' font-family='Space Grotesk,Arial,sans-serif' font-size='22' font-weight='700' fill='white' text-anchor='middle'%3E3E%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /*
+    NOTE ON THIS SMALL STYLE BLOCK:
+    styles.css itself has NOT been modified -- the design system is
+    untouched. This tiny scoped addition exists only because the input
+    bar previously used a fake, non-interactive <span> as a visual
+    placeholder. Turning it into a real, typeable <input> needs these
+    few lines so the input has no default browser border/background,
+    matching the exact look the design already had. No colors, fonts,
+    spacing, or layout values are being changed here -- just making an
+    existing look actually functional.
+  */
+  #chatInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    width: 100%;
+  }
+  #chatInput::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+  #chatInput:disabled {
+    opacity: 0.6;
+  }
+  .chat-body {
+    overflow-y: auto;
+    max-height: 420px;
+  }
+</style>
 </head>
 <body>
 
@@ -39,8 +71,8 @@
   <div class="wrap">
     <span class="breadcrumb"><a href="index.html">Home</a> / Demo</span>
     <span class="eyebrow">See It In Action</span>
-    <h1>A real conversation, handled entirely by AI.</h1>
-    <p class="lead">No hold music. No missed call. Just an instant, natural reply that moves the customer toward a booked appointment.</p>
+    <h1>Talk to the real AI assistant yourself.</h1>
+    <p class="lead">This isn't a mockup — it's the same AI technology we build for our clients. Type a real question below and see how it responds.</p>
   </div>
 </header>
 
@@ -50,8 +82,8 @@
     <div class="demo-copy">
       <div class="section-head reveal">
         <span class="eyebrow">Live Example</span>
-        <h2 class="section-tag">Watch the exchange play out.</h2>
-        <p>This is a real style of conversation your AI assistant would carry — trained on your business, not a rigid script.</p>
+        <h2 class="section-tag">This is a real, working conversation.</h2>
+        <p>Ask it about your industry, your biggest scheduling headache, or what 3E Systems AI actually does — it will respond for real, not from a script.</p>
       </div>
       <div class="demo-feature-list reveal reveal-delay-1">
         <div class="demo-feature">
@@ -77,15 +109,20 @@
         <div class="dots"><span></span><span></span><span></span></div>
         <div class="who"><i></i> 3E Assistant — Connected</div>
       </div>
+
       <div class="chat-body" id="chatBody">
-        <div class="msg user">I need to schedule a service appointment.</div>
-        <div class="msg ai">Thanks for reaching out. I can help schedule that. What day works best for you?</div>
-        <div class="msg user2">Sometime Thursday afternoon, if possible.</div>
-        <div class="msg ai2">Thursday at 2:00 PM is open — I've booked it and sent a confirmation with a reminder the day before.</div>
+        <div class="msg ai">Hi! I'm the 3E Assistant. Tell me a bit about your business — or ask me anything about how AI automation could help — and I'll show you exactly how this works.</div>
       </div>
+
+      <div class="typing-ind" id="typingIndicator" style="display:none;">
+        <span></span><span></span><span></span>
+      </div>
+
       <div class="chat-inputbar">
-        <span>Message 3E Assistant…</span>
-        <div class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></div>
+        <input type="text" id="chatInput" placeholder="Message 3E Assistant…" autocomplete="off" maxlength="1000">
+        <div class="send" id="chatSendBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </div>
       </div>
     </div>
   </div>
@@ -153,5 +190,6 @@
 </footer>
 
 <script src="main.js"></script>
+<script src="chat.js"></script>
 </body>
 </html>
