@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — 3E Systems AI</title>
+<meta name="description" content="Simple, transparent pricing for AI automation systems built specifically for your business.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%231D1D1F'/%3E%3Cstop offset='55%25' stop-color='%233a3a3d'/%3E%3Cstop offset='130%25' stop-color='%232F6FED'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='40' font-family='Space Grotesk,Arial,sans-serif' font-size='22' font-weight='700' fill='white' text-anchor='middle'%3E3E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ======================================================================
+   Design tokens — copied verbatim from the existing 3E Systems AI
+   styles.css so this page is visually identical to the live site.
+   This file is standalone (inline CSS) so it can be emailed or hosted
+   independently without needing styles.css alongside it.
+   ====================================================================== */
+:root{
+  --white:        #FAFAFA;
+  --gray-50:      #F1F2F4;
+  --line:         rgba(29,29,31,0.09);
+  --line-strong:  rgba(29,29,31,0.16);
+  --charcoal:     #1D1D1F;
+  --charcoal-70:  rgba(29,29,31,0.70);
+  --charcoal-50:  rgba(29,29,31,0.52);
+  --ink:          #0B0C0E;
+  --ink-line:     rgba(255,255,255,0.10);
+  --blue:         #2F6FED;
+  --blue-soft:    rgba(47,111,237,0.14);
+  --blue-deep:    #123B8C;
+  --blue-glow:    rgba(47,111,237,0.35);
+
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body:    'Inter', -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+
+  --container: 1180px;
+  --ease: cubic-bezier(.16,.84,.32,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--charcoal);
+  font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; margin:0; padding:0; }
+
+.wrap{ max-width:var(--container); margin:0 auto; padding:0 32px; }
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--blue);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{
+  content:'';
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--blue);
+  box-shadow:0 0 0 4px var(--blue-soft);
+}
+
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  font-weight:600;
+  letter-spacing:-.02em;
+  margin:0;
+  color:var(--charcoal);
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .9s var(--ease), transform .9s var(--ease);
+}
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+.reveal-delay-1{ transition-delay:.08s; }
+.reveal-delay-2{ transition-delay:.16s; }
+.reveal-delay-3{ transition-delay:.24s; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+}
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--blue);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* ---- Buttons (matching existing site) ---- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:15px 30px;
+  border-radius:100px;
+  font-size:15px;
+  font-weight:600;
+  border:1px solid transparent;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--charcoal);
+  color:var(--white);
+  box-shadow:0 1px 2px rgba(0,0,0,.15);
+}
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.18); }
+.btn-ghost{
+  background:transparent;
+  color:var(--charcoal);
+  border-color:var(--line-strong);
+}
+.btn-ghost:hover{ border-color:var(--charcoal); transform:translateY(-2px); }
+.btn-arrow{ transition:transform .3s var(--ease); }
+.btn:hover .btn-arrow{ transform:translateX(3px); }
+
+/* ---- Page hero (matching existing .page-hero) ---- */
+.page-hero{
+  padding:110px 0 80px;
+  text-align:center;
+  background:
+    radial-gradient(900px 480px at 50% -10%, rgba(47,111,237,0.09), transparent 60%),
+    var(--white);
+  border-bottom:1px solid var(--line);
+}
+.page-hero .eyebrow{ justify-content:center; }
+.page-hero h1{
+  font-size:clamp(34px, 4.6vw, 54px);
+  line-height:1.08;
+  margin:20px auto 18px;
+  max-width:760px;
+}
+.page-hero p.lead{
+  font-size:17.5px;
+  line-height:1.65;
+  color:var(--charcoal-70);
+  max-width:600px;
+  margin:0 auto;
+}
+
+.section-pad{ padding:110px 0; }
+.bg-ink{ background:var(--ink); color:var(--white); }
+.bg-ink h2, .bg-ink h3{ color:var(--white); }
+
+/* ---- The ROI section (dark, matching .problem-* pattern) ---- */
+.roi-head{ max-width:640px; margin:0 0 56px; }
+.roi-head h2{ font-size:clamp(30px, 3.4vw, 44px); line-height:1.12; margin-top:18px; }
+.roi-head p{ font-size:17px; line-height:1.65; color:rgba(255,255,255,.62); margin-top:18px; }
+
+.roi-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:20px;
+  overflow:hidden;
+}
+.roi-card{
+  background:var(--ink);
+  padding:38px 30px 42px;
+  transition:background .4s ease;
+}
+.roi-card:hover{ background:#16181C; }
+.roi-card strong{
+  display:block;
+  font-family:var(--font-display);
+  font-size:clamp(32px,3.6vw,42px);
+  font-weight:600;
+  background:linear-gradient(100deg,#fff,#C7C9CD);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  margin-bottom:14px;
+}
+.roi-card p{
+  font-size:14.5px;
+  line-height:1.6;
+  color:rgba(255,255,255,.55);
+  margin:0;
+}
+.roi-source{
+  margin-top:36px;
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  letter-spacing:.03em;
+  color:rgba(255,255,255,.32);
+  line-height:1.7;
+}
+
+/* ---- Pricing cards (matching .solution-card exactly) ---- */
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+  align-items:stretch;
+}
+.price-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:38px 34px 40px;
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+  display:flex; flex-direction:column;
+  position:relative;
+}
+.price-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 30px 60px -24px rgba(20,20,25,.18);
+  border-color:transparent;
+}
+.price-card.featured{
+  border-color:var(--blue);
+  box-shadow:0 20px 50px -30px var(--blue-glow);
+}
+.price-badge{
+  position:absolute;
+  top:-11px; left:34px;
+  background:var(--blue);
+  color:#fff;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:5px 12px;
+  border-radius:100px;
+}
+.price-index{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--blue);
+  letter-spacing:.08em;
+  margin-bottom:22px;
+}
+.price-card h3{ font-size:21px; margin-bottom:10px; }
+.price-card > p.desc{
+  font-size:15px;
+  line-height:1.6;
+  color:var(--charcoal-70);
+  margin:0 0 26px;
+}
+.price-amount{
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+  margin-bottom:6px;
+}
+.price-amount .num{
+  font-family:var(--font-display);
+  font-size:44px;
+  font-weight:600;
+  letter-spacing:-.03em;
+}
+.price-amount .per{
+  font-size:14.5px;
+  color:var(--charcoal-50);
+}
+.price-setup{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--charcoal-50);
+  letter-spacing:.02em;
+  padding-bottom:26px;
+  margin-bottom:26px;
+  border-bottom:1px solid var(--line);
+}
+.price-list{ display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
+.price-list li{
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:14px;
+  color:var(--charcoal-70);
+  line-height:1.5;
+}
+.price-list svg{ width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--blue); }
+.price-card .btn{ margin-top:auto; width:100%; }
+
+/* ---- Founding client note ---- */
+.founding{
+  margin-top:64px;
+  background:var(--gray-50);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:44px 40px;
+  text-align:center;
+  max-width:760px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.founding h3{ font-size:22px; margin-bottom:14px; }
+.founding p{
+  font-size:15.5px;
+  line-height:1.7;
+  color:var(--charcoal-70);
+  margin:0 auto;
+  max-width:560px;
+}
+
+/* ---- Final CTA (matching existing) ---- */
+.final-cta{
+  padding:130px 0;
+  background:
+    radial-gradient(900px 500px at 50% 110%, rgba(47,111,237,.16), transparent 60%),
+    linear-gradient(180deg, var(--white), var(--gray-50));
+  text-align:center;
+  border-top:1px solid var(--line);
+}
+.final-cta .eyebrow{ justify-content:center; }
+.final-cta h2{
+  font-size:clamp(32px, 5vw, 52px);
+  line-height:1.08;
+  margin:22px auto 20px;
+  max-width:720px;
+}
+.final-cta p{
+  font-size:17px;
+  color:var(--charcoal-70);
+  max-width:520px;
+  margin:0 auto 42px;
+  line-height:1.6;
+}
+.final-cta .btn{ padding:18px 38px; font-size:16px; }
+
+/* ---- Footer ---- */
+footer{
+  background:var(--ink);
+  color:rgba(255,255,255,.6);
+  padding:52px 0;
+  text-align:center;
+}
+.brand{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:18px;
+  color:#fff;
+  margin-bottom:16px;
+}
+.brand-mark{
+  width:30px; height:30px;
+  border-radius:9px;
+  background:linear-gradient(155deg, var(--charcoal) 0%, #3a3a3d 55%, var(--blue) 130%);
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-family:var(--font-mono); font-size:13px; font-weight:500;
+}
+.footer-tagline{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--blue);
+  display:block;
+  margin-bottom:18px;
+}
+footer p{ font-size:13.5px; color:rgba(255,255,255,.45); margin:0; }
+footer a{ color:rgba(255,255,255,.75); }
+footer a:hover{ color:#fff; }
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px){
+  .roi-grid{ grid-template-columns:1fr; }
+  .pricing-grid{ grid-template-columns:1fr; }
+}
+@media (max-width: 720px){
+  .wrap{ padding:0 22px; }
+  .page-hero{ padding:80px 0 60px; }
+  .section-pad{ padding:80px 0; }
+  .founding{ padding:34px 24px; }
+  .final-cta{ padding:90px 0; }
+  .final-cta .btn{ width:100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== PAGE HERO ===================== -->
+<header class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Pricing</span>
+    <h1>Priced against what you're already losing.</h1>
+    <p class="lead">Every system is built and trained specifically on your business — your services, your pricing, your FAQs. Not a generic bot you configure yourself.</p>
+  </div>
+</header>
+
+<!-- ===================== ROI SECTION ===================== -->
+<section class="bg-ink section-pad">
+  <div class="wrap">
+    <div class="roi-head reveal">
+      <span class="eyebrow">The Real Math</span>
+      <h2>The cost of a missed call is higher than the cost of answering it.</h2>
+      <p>Before comparing our price to another tool's price, compare it to the revenue currently walking out the door every week.</p>
+    </div>
+
+    <div class="roi-grid reveal reveal-delay-1">
+      <div class="roi-card">
+        <strong>~27%</strong>
+        <p>of inbound calls to home service businesses go unanswered — most often while your team is already on a job.</p>
+      </div>
+      <div class="roi-card">
+        <strong>$200+</strong>
+        <p>is the typical value of a single home service job. For a dental practice, one missed booking runs $200–$800.</p>
+      </div>
+      <div class="roi-card">
+        <strong>78%</strong>
+        <p>of customers buy from whichever business responds first. Speed, not price, decides most of these.</p>
+      </div>
+    </div>
+
+    <p class="roi-source">
+      Sources: Dialzara 2026 virtual receptionist cost analysis (missed call rate, job value);<br>
+      Densu 2026 AI receptionist pricing research (dental booking value); LeanData (response-time study).
+    </p>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="roi-head reveal" style="max-width:640px;">
+      <span class="eyebrow">Three Systems</span>
+      <h2 style="color:var(--charcoal);">Start with one. Add the others when it makes sense.</h2>
+      <p style="color:var(--charcoal-70);">Each tier includes everything below it. No per-conversation fees, no usage surprises, no annual contract.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Tier 1 -->
+      <div class="price-card reveal">
+        <span class="price-index">SYSTEM / CX</span>
+        <h3>AI Customer Assistant</h3>
+        <p class="desc">Answers every customer instantly, day or night — and never lets a lead go unrecorded.</p>
+        <div class="price-amount">
+          <span class="num">$297</span>
+          <span class="per">/ month</span>
+        </div>
+        <div class="price-setup">+ $500 one-time setup &amp; training</div>
+        <ul class="price-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Answers customer questions 24/7</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Captures and qualifies every lead</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Escalates urgent messages straight to you</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Trained on your services, pricing, and FAQs</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Writes every contact into your CRM</li>
+        </ul>
+        <a href="mailto:hello@3esystemsai.com" class="btn btn-ghost">Start here</a>
+      </div>
+
+      <!-- Tier 2 — featured -->
+      <div class="price-card featured reveal reveal-delay-1">
+        <span class="price-badge">Most businesses start here</span>
+        <span class="price-index">SYSTEM / CX + OPS</span>
+        <h3>Assistant + Scheduling</h3>
+        <p class="desc">Everything above, plus appointments that book themselves onto your real calendar.</p>
+        <div class="price-amount">
+          <span class="num">$497</span>
+          <span class="per">/ month</span>
+        </div>
+        <div class="price-setup">+ $750 one-time setup &amp; training</div>
+        <ul class="price-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Everything in AI Customer Assistant</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Books appointments automatically</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Real-time sync with your existing calendar</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Automatic confirmations and reminders</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Handles reschedules and cancellations</li>
+        </ul>
+        <a href="mailto:hello@3esystemsai.com" class="btn btn-primary">Book a demo <span class="btn-arrow">→</span></a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="price-card reveal reveal-delay-2">
+        <span class="price-index">SYSTEM / FULL</span>
+        <h3>The Full System</h3>
+        <p class="desc">Everything above, plus automatic follow-up so a quiet lead never quietly disappears.</p>
+        <div class="price-amount">
+          <span class="num">$697</span>
+          <span class="per">/ month</span>
+        </div>
+        <div class="price-setup">+ $1,000 one-time setup &amp; training</div>
+        <ul class="price-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Everything in Assistant + Scheduling</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Automatic follow-up on quiet leads</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Personalized, not templated, messages</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Knows when to stop — no lead gets nagged</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Monthly performance summary</li>
+        </ul>
+        <a href="mailto:hello@3esystemsai.com" class="btn btn-ghost">Talk it through</a>
+      </div>
+
+    </div>
+
+    <!-- Founding client -->
+    <div class="founding reveal reveal-delay-2">
+      <span class="eyebrow" style="justify-content:center; margin-bottom:16px;">Founding Client</span>
+      <h3>We're taking on our first few clients.</h3>
+      <p>That means you work directly with the person who builds your system, and you lock in 25% off these rates for as long as you stay a client. In exchange, we'd ask to share your results once we have real numbers to show. Everything else is exactly the same.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final-cta">
+  <div class="wrap">
+    <span class="eyebrow reveal">See It First</span>
+    <h2 class="reveal reveal-delay-1">Try the assistant before you decide anything.</h2>
+    <p class="reveal reveal-delay-1">Talk to a real, working AI assistant right now — the same one we'd build for your business. No signup, no commitment.</p>
+    <div class="reveal reveal-delay-2" style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+      <a href="https://3esystems.netlify.app/demo.html" class="btn btn-primary">Try the live demo <span class="btn-arrow">→</span></a>
+      <a href="mailto:hello@3esystemsai.com" class="btn btn-ghost">Ask a question</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <span class="brand"><span class="brand-mark">3E</span> 3E Systems AI</span>
+    <span class="footer-tagline">Efficiency. Engagement. Expansion.</span>
+    <p>Questions? <a href="mailto:hello@3esystemsai.com">hello@3esystemsai.com</a></p>
+  </div>
+</footer>
+
+<script>
+  // Scroll-reveal — same IntersectionObserver pattern as the main site's main.js
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach((el) => io.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+  }
+</script>
+</body>
+</html>
